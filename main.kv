@@ -1,6 +1,32 @@
+# Label personalizzate che ereditano (@) appunto da Label
+<BlackLabel@Label>:
+    color: (0, 0, 0, 1)
+
+<TitleLabel@Label>:
+    canvas.before:
+        Color: 
+            rgba: (1, .5, 0, 1) # canvas arancione 
+        # questa tela sarà di forma rettangolare ed avrà le stesse dimensioni e la stessa
+        # posizione del BoxLayout genitore che lo contiene
+        Rectangle: 
+            size: self.size
+            pos: self.pos
+    color: (1, 1, 1, 1) # colore del titolo bianco
+
 <Mainwindow>:
     BoxLayout:
         id: main_box
+        # il BoxLayout non ha di per sè uno sfondo quando creato: è sempicemente un contenitore
+        # Dobbiamo quindi creare lo sfondo che si fa con l'attributo canvas.before (canvas = tela, 
+        # before perché verrà creato prima di qualsiasi oggetto che il BoxLayout contiene)
+        canvas.before:
+            Color: 
+                rgba: (1, 1, 1, 1) # canvas bianco  
+            # questa tela sarà di forma rettangolare ed avrà le stesse dimensioni e la stessa
+            # posizione del BoxLayout genitore che lo contiene
+            Rectangle: 
+                size: self.size
+                pos: self.pos
         orientation: "vertical"
         BoxLayout:
             id: title
@@ -8,12 +34,17 @@
             # della finestra (altrimenti sarebbe del 33% visto che 
             # è il primo dei 3 boxlayout principali disposti verticalmente)
             size_hint_y: 0.20
-            Label:
+            # Per fare una cosa più fica usiamo la label del titolo personalizzata
+            TitleLabel:
+            #Label:
                 # in genere il rosso normalmente in RGB (Red, Green, Blue) sarebbe (255, 0, 0, 255) 
                 # Nota: l'ultimo parametro indica l'opacità
                 # In kivy invece per ognuno di questi 4 parametri va messo il vaore percentuale e quindi
                 # un valore tra 0 e 1 compresi ottenuti dalla divisione per 255
-                color: (1, 0, 0, 1)
+                # Ci aggiungiamo mezza quantità di verde per ottenere arancione o intera
+                # per ottenere il giallo
+                #color: (1, .5, 0, 1)
+                #
                 font_size: 30
                 bold: True
                 text: "Form da compilare"
@@ -36,28 +67,33 @@
                 # del 10% del BoxLayout del pulsante e del 20% del titolo
                 size_hint_y: None
                 height: 30 
-                Label:
+                #Label:
+                # Dopo aver impostato lo sfondo bianco, la Label che di default ha come
+                # colore bianco, non si vedrebbe più. Andrebbe quindi impostato color nero
+                # per ogni label presente nel form. Per evitare questa scocciatura, usiamo 
+                # una label personalizzata (vedi definizione in alto) e non più Label
+                BlackLabel:
                     text: "Nome"
                 TextInput:
                     multiline: False
             BoxLayout:
                 size_hint_y: None
                 height: 30 
-                Label:
+                BlackLabel:
                     text: "Cognome"
                 TextInput:
                     multiline: False
             BoxLayout:
                 size_hint_y: None
                 height: 30 
-                Label:
+                BlackLabel:
                     text: "Data di nascita"
                 TextInput:
                     multiline: False
             BoxLayout:
                 size_hint_y: None
                 height: 30 
-                Label:
+                BlackLabel:
                     text: "Luogo di nascita"
                 TextInput:
                     multiline: False
@@ -70,5 +106,14 @@
             # non l'orientamento di default di un BoxLayout è orizzontale
             Label:
             Button:
+                background_normal: "" # annullo il background quando il pulsante non è anora premuto
+                background_color: (1, .5, 0, 1) # imposto il colore dello sfondo uguale a quello del titolo
+                # annullo il background quando il pulsante viene premuto ma così facendo non si
+                # vede più l'effetto visivo di quando il pulsante viene premuto
+                background_down: "" 
                 text: "Invia"
+                on_press:
+                    self.background_color = (1, 0, 0, .8)
+                on_release:
+                    self.background_color = (1, .5, 0, 1)
             Label:
