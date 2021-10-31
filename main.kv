@@ -1,0 +1,74 @@
+<Mainwindow>:
+    BoxLayout:
+        id: main_box
+        orientation: "vertical"
+        BoxLayout:
+            id: title
+            # diciamo di occupare il 20% dello spazio in altezza
+            # della finestra (altrimenti sarebbe del 33% visto che 
+            # è il primo dei 3 boxlayout principali disposti verticalmente)
+            size_hint_y: 0.20
+            Label:
+                # in genere il rosso normalmente in RGB (Red, Green, Blue) sarebbe (255, 0, 0, 255) 
+                # Nota: l'ultimo parametro indica l'opacità
+                # In kivy invece per ognuno di questi 4 parametri va messo il vaore percentuale e quindi
+                # un valore tra 0 e 1 compresi ottenuti dalla divisione per 255
+                color: (1, 0, 0, 1)
+                font_size: 30
+                bold: True
+                text: "Form da compilare"
+        BoxLayout:
+            id: fields
+            orientation: "vertical"
+            BoxLayout:
+                # Ovviamente le 4 righe delle coppie di campi (label + textinput)
+                # si distribuiscono sempre equamente lo spazio verticale riservato al 
+                # BoxLayout in cui sono definiti, anche se dovessimo impostare a tutti
+                # lo stesso size_hint_y ad esempio .2 (20%)
+                # Per questo non ci possiamo affidare al size_hint per risolvere il 
+                # problema ma dobbiamo usare delle altezze fisse in pixel (E' importante
+                # impostare a None il size_hint_y a tutti)
+                # Siccome kivy "parte dal basso" (il punto (0,0) è quello in basso a sx)
+                # anche le altezze partiranno dall'alto. Per questo motivo avremo
+                # che questi 3 BoxLayout saranno sul fondo. Per ovviare a questo problema
+                # possiamo usare l'escamotage di un quarto BoxLayout vuoto sotto l'ultimo
+                # che andrà a riempire lo spazio restante della finestra tenendo presente
+                # del 10% del BoxLayout del pulsante e del 20% del titolo
+                size_hint_y: None
+                height: 30 
+                Label:
+                    text: "Nome"
+                TextInput:
+                    multiline: False
+            BoxLayout:
+                size_hint_y: None
+                height: 30 
+                Label:
+                    text: "Cognome"
+                TextInput:
+                    multiline: False
+            BoxLayout:
+                size_hint_y: None
+                height: 30 
+                Label:
+                    text: "Data di nascita"
+                TextInput:
+                    multiline: False
+            BoxLayout:
+                size_hint_y: None
+                height: 30 
+                Label:
+                    text: "Luogo di nascita"
+                TextInput:
+                    multiline: False
+            BoxLayout:
+        BoxLayout:
+            id: button
+            size_hint_y: .1
+            # Per centrare il pulsante si può usare questo escamotage:
+            # inserire prima e dopo due label vuote dal momento che se
+            # non l'orientamento di default di un BoxLayout è orizzontale
+            Label:
+            Button:
+                text: "Invia"
+            Label:
