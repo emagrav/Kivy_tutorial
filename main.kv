@@ -13,7 +13,15 @@
             pos: self.pos
     color: (1, 1, 1, 1) # colore del titolo bianco
 
-<Mainwindow>:
+<MainWindow>:
+    # Qui rendo praticamente visibili alla classe MainWindow associata (contenut nel modulo main.py)
+    # nessuno/parte/gli id dei sotto oggetti compresi il bottone in basso
+    # <nome da usare nella classe>: <id specificato qui nel file kv>
+    submit_button: submit_button
+    nome: nome
+    cognome: cognome
+    data_di_nascita: data_di_nascita
+    luogo_di_nascita: luogo_di_nascita
     BoxLayout:
         id: main_box
         # il BoxLayout non ha di per sè uno sfondo quando creato: è sempicemente un contenitore
@@ -75,6 +83,7 @@
                 BlackLabel:
                     text: "Nome"
                 TextInput:
+                    id: nome
                     multiline: False
             BoxLayout:
                 size_hint_y: None
@@ -82,6 +91,7 @@
                 BlackLabel:
                     text: "Cognome"
                 TextInput:
+                    id: cognome
                     multiline: False
             BoxLayout:
                 size_hint_y: None
@@ -89,6 +99,7 @@
                 BlackLabel:
                     text: "Data di nascita"
                 TextInput:
+                    id: data_di_nascita
                     multiline: False
             BoxLayout:
                 size_hint_y: None
@@ -96,6 +107,7 @@
                 BlackLabel:
                     text: "Luogo di nascita"
                 TextInput:
+                    id: luogo_di_nascita
                     multiline: False
             BoxLayout:
         BoxLayout:
@@ -106,6 +118,10 @@
             # non l'orientamento di default di un BoxLayout è orizzontale
             Label:
             Button:
+                # per poter utilizzare questo button all'interno della classe MainWindow del modulo main.py
+                # è necessario inserire un'associazione all'interno della definizione <MainWindow> in alto
+                # che per semplicità può avere lo stesso id
+                id: submit_button
                 background_normal: "" # annullo il background quando il pulsante non è anora premuto
                 background_color: (1, .5, 0, 1) # imposto il colore dello sfondo uguale a quello del titolo
                 # annullo il background quando il pulsante viene premuto ma così facendo non si
@@ -116,4 +132,6 @@
                     self.background_color = (1, 0, 0, .8)
                 on_release:
                     self.background_color = (1, .5, 0, 1)
+                    # richiamo il metodo che si trova nella classe root e cioè MainWindow
+                    root.invia_form() 
             Label:
