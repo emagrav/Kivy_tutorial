@@ -133,5 +133,35 @@
                 on_release:
                     self.background_color = (1, .5, 0, 1)
                     # richiamo il metodo che si trova nella classe root e cioè MainWindow
-                    root.invia_form() 
+                    # che richiama il popup
+                    root.conferma_invio_form() 
             Label:
+
+<CustomPopup>:
+    accettato_invio_form: accettato_invio_form
+
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Sei sicuro di voler inviare il form?"
+        BoxLayout:
+            Button:
+                size_hint_y: None
+                height: 50
+                text: "Cancel"
+                on_release:
+                    root.dismiss_popup()
+            Button:
+                id: accettato_invio_form
+                size_hint_y: None
+                height: 50
+                text: "Invia"
+                on_release:
+                    # qui chiamo il metodo che Kivy crea con lo stesso nome del 
+                    # pulsante dopo l'associazione effettuata con la creazione
+                    # del popup in main.py all'interno di MainWindow, precisamente
+                    # nel metodo conferma_invio_form() quando passiamo il parametro
+                    # accettato_invio_form=self.invia_form)
+                    root.accettato_invio_form()
+                    root.dismiss_popup()
+
