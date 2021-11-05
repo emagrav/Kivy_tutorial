@@ -1,7 +1,9 @@
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
 from kivy.properties import ObjectProperty
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
+
 
 # il popup non è un sotto oggetto di MainWindow ma un altro oggetto
 # per questo definiamo una classe e, parallelamente, nel file kv
@@ -43,12 +45,15 @@ class MainWindow(BoxLayout):
         with open("out/form.txt",'w') as f:
             f.write(riga)
 
-
 # il nome della classe deve iniziare con Main come il file .kv
 # può anche chiamarsi, quindi, semplicemente Main
 class MainApp(App):
     def build(self):
         return MainWindow()
+
+# qualora invece si volesse chiamare il file .kv ad es. "style.kv",
+# va eseguita questa istruzione
+#kv = Builder.load_file("style.kv")
 
 sample_app = MainApp()
 sample_app.run()
