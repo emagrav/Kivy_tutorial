@@ -40,7 +40,7 @@ class MainWindow(BoxLayout):
 
         riga = f"Sig./Sig.ra {self.nome.text} {self.cognome.text} nato/a il {self.data_di_nascita.text} a {self.luogo_di_nascita.text}"
         print("Riga:", riga)
-        with open("form.txt",'w') as f:
+        with open("out/form.txt",'w') as f:
             f.write(riga)
 
 
