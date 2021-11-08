@@ -62,6 +62,7 @@ class SecondWindow(Screen):
     
     def go_back(self):
         #sm.current = "mainwindow"
+        # funziona!!!
         print("screens[0].nome.text:", screens[0].nome.text)
         sm.switch_to(screens[0], direction="right")
 
