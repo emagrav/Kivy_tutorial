@@ -54,8 +54,15 @@ class MainWindow(Screen):
         #sm.current = "secondwindow" 
 
 class SecondWindow(Screen):
+    lbl_benvenuto = ObjectProperty(None)
+    
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.lbl_benvenuto.text = "Guarda come cambio il testo di benvenuto"
+    
     def go_back(self):
         #sm.current = "mainwindow"
+        print("screens[0].nome.text:", screens[0].nome.text)
         sm.switch_to(screens[0], direction="right")
 
 class WindowManager(ScreenManager):

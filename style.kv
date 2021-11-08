@@ -166,6 +166,7 @@
                     root.dismiss_popup()
 
 <SecondWindow>:
+    lbl_benvenuto: lbl_benvenuto
     BoxLayout:
         canvas.before:
             Color: 
@@ -177,6 +178,7 @@
                 pos: self.pos
         orientation: "vertical"
         BlackLabel:
+            id: lbl_benvenuto
             text: "Grazie per aver compilato il form"
         Button:
             size_hint_y: None
