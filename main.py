@@ -61,9 +61,9 @@ class SecondWindow(Screen):
         self.lbl_benvenuto.text = "Guarda come cambio il testo di benvenuto"
     
     def go_back(self):
-        #sm.current = "mainwindow"
-        # funziona!!!
+        # funziona lettura valori inseriti in form!!!
         print("screens[0].nome.text:", screens[0].nome.text)
+        #sm.current = "mainwindow"
         sm.switch_to(screens[0], direction="right")
 
 class WindowManager(ScreenManager):
