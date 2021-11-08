@@ -165,3 +165,22 @@
                     root.accettato_invio_form()
                     root.dismiss_popup()
 
+<SecondWindow>:
+    BoxLayout:
+        canvas.before:
+            Color: 
+                rgba: (1, 1, 1, 1) # canvas bianco  
+            # questa tela sarà di forma rettangolare ed avrà le stesse dimensioni e la stessa
+            # posizione del BoxLayout genitore che lo contiene
+            Rectangle: 
+                size: self.size
+                pos: self.pos
+        orientation: "vertical"
+        BlackLabel:
+            text: "Grazie per aver compilato il form"
+        Button:
+            size_hint_y: None
+            height: 50
+            text: "indietro"
+            on_release:
+                root.go_back()
