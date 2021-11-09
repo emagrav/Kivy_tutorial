@@ -26,6 +26,7 @@ class MainWindow(Screen):
     cognome = ObjectProperty(None)
     data_di_nascita = ObjectProperty(None)
     luogo_di_nascita = ObjectProperty(None)
+    professione = ObjectProperty(None)
 
     def conferma_invio_form(self):
         # creo il popup: size_hint come al solito vuole la larghezza (size_hint_x) e l'altezza 
@@ -44,7 +45,7 @@ class MainWindow(Screen):
         # modifico la proprietà text del button
         #self.submit_button.text = "Form inviato"
 
-        riga = f"Sig./Sig.ra {self.nome.text} {self.cognome.text} nato/a il {self.data_di_nascita.text} a {self.luogo_di_nascita.text}"
+        riga = f"Sig./Sig.ra {self.nome.text} {self.cognome.text} nato/a il {self.data_di_nascita.text} a {self.luogo_di_nascita.text}, di professione {self.professione.text}"
         print("Riga:", riga)
         with open("out/form.txt",'w') as f:
             f.write(riga)
