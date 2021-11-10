@@ -23,6 +23,10 @@
     data_di_nascita: data_di_nascita
     luogo_di_nascita: luogo_di_nascita
     professione: professione
+    patenteA: patenteA
+    patenteB: patenteB
+    patenteC: patenteC
+
     BoxLayout:
         # la distanza dai bordi
         padding: 20
@@ -104,18 +108,18 @@
                 height: 30 
                 BlackLabel:
                     text: "Data di nascita"
-                BoxLayout:
-                    id: data_di_nascita
-                    orientation: "horizontal"
-                    Spinner:
-                        text: "giorno"
-                    Spinner:
-                        text: "mese"
-                    Spinner:
-                        text: "anno"
-                #TextInput:
+                #BoxLayout:
                 #    id: data_di_nascita
-                #    multiline: False
+                #    orientation: "horizontal"
+                #    Spinner:
+                #        text: "giorno"
+                #    Spinner:
+                #        text: "mese"
+                #    Spinner:
+                #        text: "anno"
+                TextInput:
+                    id: data_di_nascita
+                    multiline: False
             BoxLayout:
                 size_hint_y: None
                 height: 30 
@@ -133,6 +137,28 @@
                     id: professione
                     text: "Scegli opzione"
                     values : ['studente', 'lavoratore', 'disoccupato', 'pensionato', 'artista']
+            BoxLayout:
+                size_hint_y: None
+                height: 30 
+                BlackLabel:
+                    text: "Patenti in possesso"
+                BoxLayout:
+                    BlackLabel:
+                        text: 'Patente A'
+                    CheckBox:
+                        id: patenteA
+                        color: (0, 0, 0)
+                    BlackLabel:
+                        text: 'Patente B'
+                    CheckBox:
+                        id: patenteB
+                        color: (0, 0, 0)
+                    BlackLabel:
+                        text: 'Patente C'
+                    CheckBox:
+                        id: patenteC
+                        color: (0, 0, 0)
+                        #active: True
             BoxLayout:
         BoxLayout:
             id: button
@@ -210,3 +236,9 @@
             text: "indietro"
             on_release:
                 root.go_back()
+        Button:
+            size_hint_y: None
+            height: 50
+            text: "esci"
+            on_release:
+                root.exit()
